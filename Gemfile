@@ -55,5 +55,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'omniauth-facebook'
 gem 'simple_form'
 gem "slim-rails"
