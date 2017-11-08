@@ -1,3 +1,23 @@
 = link_to 'Logout', destroy_admin_session_path, method: :delete
 
-h1 Products Index Page for admins
+h1 Products Page for admins
+
+= link_to 'Add new product', new_admin_product_path
+
+table.table.table-striped
+  thead
+    tr
+      th scope='col' #
+      th scope='col' Name
+      th scope='col' Description
+      th scope='col' Unit Price (S$)
+      th scope='col' Stock
+
+  tbody
+    - @products.each.with_index(1) do |product, index|
+      tr
+        th scope='row' = index
+        td = product.name
+        td = product.description
+        td = product.unit_price
+        td = product.stock
