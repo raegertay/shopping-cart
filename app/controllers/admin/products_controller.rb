@@ -1,7 +1,7 @@
 class Admin::ProductsController < ApplicationController
 
   before_action :authenticate_admin!
-  before_action :prepare_product, only: [:show, :destroy]
+  before_action :prepare_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -18,6 +18,17 @@ class Admin::ProductsController < ApplicationController
       redirect_to admin_products_path
     else
       render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @product.update(product_params)
+      flash[:notice] = 'Product successfully updated'
+      redirect_to admin_products_path
+    else
+      render :edit
     end
   end
 
