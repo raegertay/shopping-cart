@@ -1,6 +1,7 @@
 class Admin::ProductsController < ApplicationController
 
   before_action :authenticate_admin!
+  before_action :prepare_product, only: [:show, :destroy]
 
   def index
     @products = Product.all
@@ -20,8 +21,9 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
+  def show; end
+
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
     flash[:notice] = 'Product successfully deleted'
     redirect_to admin_products_path
@@ -31,6 +33,10 @@ class Admin::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description, :unit_price, :stock)
+  end
+
+  def prepare_product
+    @product = Product.find(params[:id])
   end
 
 end
