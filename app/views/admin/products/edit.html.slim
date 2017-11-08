@@ -1,0 +1,10 @@
+= link_to 'Back', admin_products_path
+
+h3 Add New product
+
+= simple_form_for @product, url: admin_product_path(@product), method: :put do |f|
+  = f.input :name
+  = f.input :description
+  = f.input :unit_price
+  = f.input :stock
+  = f.button :submit
