@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-= link_to 'Back', admin_products_path
-
-h4 = @product.name
-p = "Brand: #{@product.brand.name}"
-p = "Description: #{@product.description}"
-p = "Cost price: #{@product.cost_price}"
-p = "Selling price: #{@product.selling_price}"
-p = "Stock: #{@product.stock}"
-= image_tag @product.image, width: '250px', class: 'img-thumbnail'
-=======
 .container.show-box
   .row
     .col.text-left
       h4 = @product.name
+      p = @product.brand.name
       p = @product.description
     .col
       = image_tag @product.image, width: 'auto', class: 'img-thumbnail'
@@ -20,4 +10,3 @@ p = "Stock: #{@product.stock}"
       p = "Cost price: #{@product.cost_price}"
       p = "Selling price: #{@product.selling_price}"
       p = "Stock: #{@product.stock}"
->>>>>>> Style structure for admin index and show

@@ -1,7 +1,9 @@
-h1 Products Page (Admin)
+br
+.text-center
+  h1 Welcome, Admin!
 
-= link_to 'Add new product', new_admin_product_path
-
+  = link_to 'Add new product?', new_admin_product_path
+br
 .container.
   .row
     - @products.each.with_index(1) do |product, index|
