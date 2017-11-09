@@ -4,6 +4,7 @@ h3 Add New product
 
 = simple_form_for @product, url: admin_product_path(@product), method: :put do |f|
   = f.input :name
+  = f.association :brand
   = f.input :description
   = f.input :cost_price
   = f.input :selling_price

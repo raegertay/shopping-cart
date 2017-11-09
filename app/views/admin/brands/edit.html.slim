@@ -1,0 +1,7 @@
+= link_to 'Back', admin_brands_path
+
+h3 Add New product
+
+= simple_form_for @brand, url: admin_brand_path(@brand), method: :put do |f|
+  = f.input :name
+  = f.button :submit
