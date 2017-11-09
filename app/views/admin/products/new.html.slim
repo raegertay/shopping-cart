@@ -5,6 +5,8 @@ h3 Add New product
 = simple_form_for @product, url: admin_products_path, method: :post do |f|
   = f.input :name
   = f.input :description
-  = f.input :unit_price
+  = f.input :cost_price
+  = f.input :selling_price
   = f.input :stock
+  = f.filestack_field :image, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image' 
   = f.button :submit
