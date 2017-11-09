@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20171108021924) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_categories_on_product_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -61,6 +69,7 @@ ActiveRecord::Schema.define(version: 20171108021924) do
     t.string "name", null: false
     t.text "description"
     t.bigint "brand_id", null: false
+    t.bigint "category_id", null: false
     t.decimal "cost_price", null: false
     t.decimal "selling_price", null: false
     t.integer "stock", null: false
@@ -68,7 +77,9 @@ ActiveRecord::Schema.define(version: 20171108021924) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_products_on_brand_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   add_foreign_key "products", "brands"
+  add_foreign_key "products", "categories"
 end
