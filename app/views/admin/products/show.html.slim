@@ -1,7 +1,8 @@
 = link_to 'Back', admin_products_path
 
 h4 = @product.name
-p = @product.description
+p = "Brand: #{@product.brand.name}"
+p = "Description: #{@product.description}"
 p = "Cost price: #{@product.cost_price}"
 p = "Selling price: #{@product.selling_price}"
 p = "Stock: #{@product.stock}"
