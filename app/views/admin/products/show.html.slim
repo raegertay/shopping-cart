@@ -2,5 +2,7 @@
 
 h4 = @product.name
 p = @product.description
-p = "Unit price: #{@product.unit_price}"
+p = "Cost price: #{@product.cost_price}"
+p = "Selling price: #{@product.selling_price}"
 p = "Stock: #{@product.stock}"
+= image_tag @product.image, width: '250px', class: 'img-thumbnail'

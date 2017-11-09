@@ -18,6 +18,8 @@ Bundler.require(*Rails.groups)
 
 module ShoppingCart
   class Application < Rails::Application
+    config.filestack_rails.api_key = ENV['FILESTACK_KEY']
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
