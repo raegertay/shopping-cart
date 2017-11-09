@@ -28,7 +28,7 @@ class Admin::BrandsController < ApplicationController
       flash[:notice] = 'Brand successfully updated'
       redirect_to admin_brands_path
     else
-      render :index
+      render :edit
     end
   end
 
