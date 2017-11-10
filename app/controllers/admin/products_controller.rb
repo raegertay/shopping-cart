@@ -4,7 +4,7 @@ class Admin::ProductsController < ApplicationController
   before_action :prepare_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+    @products = Product.all.order(created_at: :desc)
   end
 
   def new

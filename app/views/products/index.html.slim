@@ -14,22 +14,24 @@
     span.sr-only Next
 
 br
+- unless @products.empty?
+  .container.
+    .row
+      - @products.each.with_index(1) do |product, index|
+        .card-group.product-box
+          .card style=("width: 350px; height:auto;")
+            img.card-img-top style=("width: 350px; height:300px;") src=product.image
 
-.container.
-  .row
-    - @products.each.with_index(1) do |product, index|
-      .card-group.product-box
-        .card style=("width: 350px; height:auto;")
-          img.card-img-top style=("width: 350px; height:300px;") src=product.image
-
-          .card-body
-            h4.card-title
-              = product.name
-            p.card-
-              = "Description: #{product.description}"
-              br
-              = "Selling Price: $#{product.selling_price}"
-              br
-              = "Stock available: #{product.stock}"
-              br
-            .span
+            .card-body
+              h4.card-title
+                = product.name
+              p.card-
+                = "Brand: #{product.brand.name}"
+                br
+                br
+                = "Description: #{product.description}"
+                br
+                = "Selling Price: $#{product.selling_price}"
+                br
+                = "Stock available: #{product.stock}"
+                br

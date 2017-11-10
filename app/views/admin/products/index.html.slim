@@ -15,15 +15,17 @@ br
             h4.card-title
               = product.name
             p.card-
-              = "Description: #{product.description}"
+              = "Brand: #{product.brand.name}"
+              br
               br
               = "Cost Price: $#{product.cost_price}"
               br
               = "Selling Price: $#{product.selling_price}"
+              br
               br
               = "Stock available: #{product.stock}"
               br
             .span
               = link_to 'Show', admin_product_path(product), class: "btn btn-dark product-box"
               = link_to 'Edit', edit_admin_product_path(product), class: "btn btn-dark product-box"
-              = link_to 'Delete', admin_product_path(product), class: "btn btn-dark product-box", method: :delete, 'data-confirm': 'Are you sure?'
+              = link_to 'Delete', admin_product_path(product), class: "btn btn-dark", method: :delete, 'data-confirm': 'Are you sure?'
