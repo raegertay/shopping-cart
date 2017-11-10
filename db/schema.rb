@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108021924) do
+ActiveRecord::Schema.define(version: 20171110134805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,10 +40,8 @@ ActiveRecord::Schema.define(version: 20171108021924) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_categories_on_product_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -65,11 +63,19 @@ ActiveRecord::Schema.define(version: 20171108021924) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "product_categories", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_product_categories_on_category_id"
+    t.index ["product_id"], name: "index_product_categories_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.bigint "brand_id", null: false
-    t.bigint "category_id", null: false
     t.decimal "cost_price", null: false
     t.decimal "selling_price", null: false
     t.integer "stock", null: false
@@ -77,9 +83,9 @@ ActiveRecord::Schema.define(version: 20171108021924) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_products_on_brand_id"
-    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  add_foreign_key "product_categories", "categories"
+  add_foreign_key "product_categories", "products"
   add_foreign_key "products", "brands"
-  add_foreign_key "products", "categories"
 end
