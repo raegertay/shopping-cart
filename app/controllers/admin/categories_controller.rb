@@ -36,13 +36,13 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     @category.destroy
     flash[:notice] = 'Category successfully deleted!'
-    redirect_to admin_categories_paths
+    redirect_to admin_categories_path
   end
 
   private
 
   def prepare_category
-    @category = Category.find[params[:id]]
+    @category = Category.find(params[:id])
   end
 
   def category_params
