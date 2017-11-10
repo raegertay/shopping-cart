@@ -1,4 +1,38 @@
-= link_to 'Logout', destroy_customer_session_path, method: :delete if customer_signed_in?
-= link_to 'Login', new_customer_session_path unless customer_signed_in?
+#carouselExampleIndicators.carousel.slide data-ride="carousel"
+  ol.carousel-indicators
+    li.active data-slide-to="0" data-target="#carouselExampleIndicators"
+    li data-slide-to="1" data-target="#carouselExampleIndicators"
+    li data-slide-to="2" data-target="#carouselExampleIndicators"
+  .carousel-inner
+    .carousel-item.active
+      img.d-block.w-100 alt=("First slide") src="assets/newarrivals.jpg" /
+  a.carousel-control-prev data-slide="prev" href="#carouselExampleIndicators" role="button"
+    span.carousel-control-prev-icon aria-hidden="true"
+    span.sr-only Previous
+  a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button"
+    span.carousel-control-next-icon aria-hidden="true"
+    span.sr-only Next
 
-h1 Products index page for customers
+br
+  .container.
+    .row
+      - @products.each.with_index(1) do |product, index|
+        .card-group.product-box
+          .card style=("width: 350px; height:auto;")
+            img.card-img-top style=("width: 350px; height:300px;") src=product.image
+
+            .card-body
+              h4.card-title
+                = product.name
+              p.card-
+                = "Brand: #{product.brand.name}"
+                br
+                br
+                = "Description: #{product.description}"
+                br
+                br
+                = "Selling Price: $#{product.selling_price}"
+                br
+                = "Stock available: #{product.stock}"
+                br
+            

@@ -1,3 +1,25 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+body {
+  background-image: url("background.jpg");
+
+}
+.product-box {
+  margin-right: 10px;
+}
+
+.show-box {
+  padding-top: 50px;
+}
+
+.brand-bg {
+  background-color: white;
+  padding: 50px 50px;
+  border: 25px #343A40 solid;
+}
+
+h1 {
+  font-family: 'Dosis', sans-serif;
+}

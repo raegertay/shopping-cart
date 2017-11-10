@@ -10,5 +10,3 @@
       p = "Cost price: $#{@product.cost_price}"
       p = "Selling price: $#{@product.selling_price}"
       p = "Stock: #{@product.stock}"
-      = link_to 'Edit', edit_admin_product_path(@product), class: "btn btn-dark product-box"
-      = link_to 'Delete', admin_product_path(@product), class: "btn btn-dark product-box", method: :delete, 'data-confirm': 'Are you sure?'

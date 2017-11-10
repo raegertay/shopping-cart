@@ -1,15 +1,20 @@
-= link_to 'Back', admin_products_path
-
-h3 Add New product
-
-= simple_form_for @product, url: admin_products_path, method: :post do |f|
-  = f.input :name
-  = f.association :brand
-  p = link_to 'Add new brand', new_admin_brand_path, target: '_blank'
-  p = link_to 'Add new category', new_admin_category_path, target: '_blank'
-  = f.input :description
-  = f.input :cost_price
-  = f.input :selling_price
-  = f.input :stock
-  = f.filestack_field :image, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
-  = f.button :submit
+.container.text-center.show-box
+  = link_to 'Back', admin_products_path
+  br
+  br
+  .form-edit-style
+    h3 ADD A PRODUCT
+    = simple_form_for @product, url: admin_products_path, method: :post do |f|
+      = f.input :name
+      = f.association :brand
+      = link_to 'Add new brand?', new_admin_brand_path, target: '_blank'
+      br
+      br
+      = f.input :description
+      = f.input :cost_price
+      = f.input :selling_price
+      = f.input :stock
+      = f.filestack_field :image, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
+      br
+      br
+      = f.button :submit, class: 'btn btn-success'

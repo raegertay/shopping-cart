@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<a class="navbar-brand" href="#"><img src="/assets/company_logo.png" height="40" width="60"></a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+
+  </ul>
+
+  <div class="mx-auto">
+    <%= content_tag :p, notice, class: 'notice' if notice %>
+    <%= content_tag :p, alert, class: 'alert' if alert %>
+  </div>
+
+  <div class="btn-group" style="padding-right: 10px">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action
+  </button>
+  <div class="dropdown-menu">
+    <div class="dropdown-item">
+      <%= link_to 'Logout', destroy_customer_session_path, method: :delete if customer_signed_in? %>
+      <%= link_to 'Login', new_customer_session_path unless customer_signed_in? %><br>
+    </div>
+    <div class="dropdown-item">
+      <%= link_to 'Register', new_customer_registration_path unless customer_signed_in? %>
+    </div>
+    <div class="dropdown-divider"></div>
+      <% if customer_signed_in? %>
+      <div class="dropdown-item">
+        <%= link_to 'Edit Profile', edit_customer_registration_path %>
+      </div>
+        <% end %>
+  </div>
+</div>
+
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+
+</div>
+</nav>
