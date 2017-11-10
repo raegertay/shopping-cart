@@ -19,8 +19,6 @@
 <% else %>
 <%= render '/layouts/mainbar' %>
 <% end %>
-<%= content_tag :p, notice, class: 'notice' if notice %>
-<%= content_tag :p, alert, class: 'alert' if alert %>
 <%= yield %>
 </body>
 </html>

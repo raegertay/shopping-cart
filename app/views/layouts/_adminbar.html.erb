@@ -5,13 +5,18 @@
 </button>
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav mr-auto">
+  <ul class="navbar-nav">
     <li class="nav-item active">
       <div class="nav-link">
         <%= link_to 'Admin Home', admin_root_path %>
       </div>
     </li>
   </ul>
+
+<div class="mx-auto">
+  <%= content_tag :p, notice, class: 'notice' if notice %>
+  <%= content_tag :p, alert, class: 'alert' if alert %>
+</div>
 
   <div class="btn-group" style="padding-right: 10px">
   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
