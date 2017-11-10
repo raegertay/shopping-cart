@@ -1,14 +1,18 @@
-= link_to 'Back to product listing', admin_products_path
+.container.text-center.show-box
+  = link_to 'Back to product listing', admin_products_path
+  br
+  br
+  .brand-bg
+    h1 ALL BRANDS
 
-h1 All Brands
-
-= link_to 'Add new brand', new_admin_brand_path
-
-ol
-  - @brands.each do |brand|
-    li
-      = brand.name
-      |&nbsp;
-      = link_to 'Edit', edit_admin_brand_path(brand)
-      |&nbsp;
-      = link_to 'Delete', admin_brand_path(brand), method: :delete, 'data-confirm': 'Are you sure?'
+    = link_to 'Add new brand', new_admin_brand_path
+    br
+    br
+    ol
+      - @brands.each do |brand|
+        li
+          = brand.name
+          |&nbsp;
+          = link_to 'Edit', edit_admin_brand_path(brand)
+          |&nbsp;
+          = link_to 'Delete', admin_brand_path(brand), method: :delete, 'data-confirm': 'Are you sure?'

@@ -14,7 +14,6 @@
     span.sr-only Next
 
 br
-- unless @products.empty?
   .container.
     .row
       - @products.each.with_index(1) do |product, index|
@@ -31,7 +30,9 @@ br
                 br
                 = "Description: #{product.description}"
                 br
+                br
                 = "Selling Price: $#{product.selling_price}"
                 br
                 = "Stock available: #{product.stock}"
                 br
+            

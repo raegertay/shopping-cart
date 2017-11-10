@@ -1,7 +1,9 @@
-= link_to 'Back', admin_brands_path
+.container.text-center.show-box
+  = link_to 'Back', admin_brands_path
+  br
+  br
+  h3 ADD NEW PRODUCT
 
-h3 Add New product
-
-= simple_form_for @brand, url: admin_brand_path(@brand), method: :put do |f|
-  = f.input :name
-  = f.button :submit
+  = simple_form_for @brand, url: admin_brand_path(@brand), method: :put do |f|
+    = f.input :name
+    = f.button :submit, class: 'btn btn-success'
