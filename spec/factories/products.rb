@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :product do
     sequence(:name) { |n| "testing#{n}" }
     association :brand, factory: :brand
+    association :category, factory: :category
     cost_price 10
     selling_price 100
     stock 100

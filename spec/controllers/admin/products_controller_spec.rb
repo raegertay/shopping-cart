@@ -22,8 +22,9 @@ RSpec.describe Admin::ProductsController, type: :controller do
 
     context 'when save is successful' do
       let(:brand) { create(:brand) }
+      let(:category) { create(:category) }
       let(:product_params) do
-        { product: attributes_for(:product, brand_id: brand.id) }
+        { product: attributes_for(:product, brand_id: brand.id, category_id: category.id) }
       end
       it { expect(Product.all.count).to eq(1) }
       it { is_expected.to redirect_to(admin_product_path(Product.first.id)) }

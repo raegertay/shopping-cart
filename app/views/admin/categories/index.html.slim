@@ -1,0 +1,18 @@
+= link_to 'Back to product listing', admin_products_path
+
+h1 All Category
+
+= link_to 'Add new category', new_admin_category_path
+
+ol
+  - @categories.each do |category|
+    li
+    = category.name
+    |&nbsp;
+    = link_to 'Edit', edit_admin_category_path(category)
+    |&nbsp;
+<<<<<<< HEAD
+    = link_to 'Delete', admin_category_path(category), method: :delete, 'data-confirm': 'Are you sure?'
+=======
+    = link_to 'Delete', admin_brand_path(category), method: :delete, 'data-confirm': 'Are you sure?'
+>>>>>>> 2a6b4989683f326c35b75c2db3a87001aa65c7ac

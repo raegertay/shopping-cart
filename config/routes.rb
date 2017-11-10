@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     root 'products#index'
     resources :products
     resources :brands, except: [:show]
+    resources :categories, except: [:show]
   end
 
 end
