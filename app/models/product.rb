@@ -12,4 +12,14 @@ class Product < ApplicationRecord
   validates :selling_price, presence: true
   validates :stock, presence: true
 
+  # Return url of main image
+  def main_image
+    images.find_by_position(1).url
+  end
+
+  # Return an array of urls for the images
+  def all_image
+    images.map(&:url)
+  end
+
 end

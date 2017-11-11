@@ -1,7 +1,7 @@
 .container.show-box
   .row
     .col.text-center
-      = image_tag @product.image, width: '500px', class: 'img-thumbnail'
+      = image_tag @product.main_image, width: '500px', class: 'img-thumbnail'
       br
       h4 = @product.name
       p = "Brand: #{@product.brand.name}"
