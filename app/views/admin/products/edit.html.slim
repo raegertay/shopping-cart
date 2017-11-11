@@ -13,7 +13,11 @@
       = f.input :cost_price
       = f.input :selling_price
       = f.input :stock
-      = f.filestack_field :images, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
+      = f.filestack_field :images, 'Add image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
       br
       br
       = f.button :submit
+
+  - @product.all_images.each do |image|
+    = image_tag image.url, width: '200px', class: 'img-thumbnail'
+    = link_to 'Delete', image_admin_product_path(@product, image), method: :delete, 'data-confirm': 'Are you sure?'

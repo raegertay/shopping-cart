@@ -1,7 +1,7 @@
 class Admin::ProductsController < ApplicationController
 
   before_action :authenticate_admin!
-  before_action :prepare_product, only: [:show, :edit, :update, :destroy]
+  before_action :prepare_product, only: [:show, :edit, :update, :destroy, :destroy_image]
 
   def index
     @products = Product.all.order(created_at: :desc)
@@ -40,6 +40,13 @@ class Admin::ProductsController < ApplicationController
     @product.destroy
     flash[:notice] = 'Product successfully deleted'
     redirect_to admin_products_path
+  end
+
+  def destroy_image
+    @product.images.find(params[:image_id]).destroy
+    @product.reorder_images
+    flash[:notice] = 'Image sucessfully deleted'
+    redirect_to edit_admin_product_path(params[:id])
   end
 
   private
