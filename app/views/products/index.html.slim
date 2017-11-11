@@ -19,7 +19,7 @@ br
       - @products.each.with_index(1) do |product, index|
         .card-group.product-box
           .card style=("width: 350px; height:auto;")
-            img.card-img-top style=("width: 350px; height:300px;") src=product.image
+            img.card-img-top style=("width: 350px; height:300px;") src=product.main_image_url
 
             .card-body
               h4.card-title
@@ -35,4 +35,3 @@ br
                 br
                 = "Stock available: #{product.stock}"
                 br
-            

@@ -4,28 +4,6 @@ br
 
   = link_to 'Add new product?', new_admin_product_path
 br
-.container.
-  .row
-    - @products.each.with_index(1) do |product, index|
-      .card-group.product-box
-        .card style=("width: 350px; height:auto;")
-          img.card-img-top style=("width: 350px; height:300px;") src=product.main_image_url
-
-          .card-body
-            h4.card-title
-              = product.name
-            p.card-
-              = "Brand: #{product.brand.name}"
-              br
-              br
-              = "Cost Price: $#{product.cost_price}"
-              br
-              = "Selling Price: $#{product.selling_price}"
-              br
-              br
-              = "Stock available: #{product.stock}"
-              br
-            .span
-              = link_to 'Show', admin_product_path(product), class: "btn btn-dark product-box"
-              = link_to 'Edit', edit_admin_product_path(product), class: "btn btn-dark product-box"
-              = link_to 'Delete', admin_product_path(product), class: "btn btn-dark", method: :delete, 'data-confirm': 'Are you sure?'
+.container
+  #product-listing
+    = render 'product_listing'
