@@ -1,8 +1,8 @@
 class Admin::ProductsController < ApplicationController
 
   before_action :authenticate_admin!
-  before_action :prepare_product, only: [:show, :edit, :update, :destroy, :destroy_image, :swap_image_position]
-  before_action :prepare_image, only: [:destroy_image, :swap_image_position]
+  before_action :prepare_product, only: [:show, :edit, :update, :destroy, :destroy_image, :swap_image_position, :change_image]
+  before_action :prepare_image, only: [:destroy_image, :swap_image_position, :change_image]
 
   def index
     @products = Product.all.order(created_at: :desc)
@@ -51,10 +51,19 @@ class Admin::ProductsController < ApplicationController
   end
 
   def swap_image_position
-    @product.images.find_by(image_position_params).update(position: @image.position)
-    @image.update(image_position_params)
+    @product.images.find_by(image_params).update(position: @image.position)
+    @image.update(image_params)
     flash[:notice] = 'Image sucessfully swapped'
     redirect_to edit_admin_product_path(params[:id])
+  end
+
+  def change_image
+    if @image.update(image_params)
+      flash[:notice] = 'Image successfully changed'
+      redirect_to edit_admin_product_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   private
@@ -63,8 +72,8 @@ class Admin::ProductsController < ApplicationController
     params.require(:product).permit(:name, :brand_id, :category_id, :description, :cost_price, :selling_price, :stock, category_ids: [])
   end
 
-  def image_position_params
-    params.require(:image).permit(:position)
+  def image_params
+    params.require(:image).permit(:position, :url)
   end
 
   def image_url
