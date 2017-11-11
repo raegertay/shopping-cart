@@ -6,6 +6,10 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.all.order(created_at: :desc).page(params[:page])
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def new
