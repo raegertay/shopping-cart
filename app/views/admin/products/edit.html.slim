@@ -4,7 +4,7 @@
   br
 
   .form-edit-style
-    h3 ADD NEW PRODUCT
+    h3 EDIT PRODUCT
     = simple_form_for @product, url: admin_product_path(@product), method: :put do |f|
       = f.input :name
       = f.association :brand, include_blank: false
@@ -13,7 +13,7 @@
       = f.input :cost_price
       = f.input :selling_price
       = f.input :stock
-      = f.filestack_field :image, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
+      = f.filestack_field :images, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
       br
       br
       = f.button :submit

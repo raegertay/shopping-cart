@@ -14,6 +14,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
+      @product.add_image(image_url)
       flash[:notice] = 'Product successfully created'
       redirect_to admin_product_path(@product)
     else
@@ -25,6 +26,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      @product.add_image(image_url)
       flash[:notice] = 'Product successfully updated'
       redirect_to admin_product_path(@product)
     else
@@ -43,7 +45,11 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :brand_id, :category_id, :description, :cost_price, :selling_price, :stock, :image, category_ids: [])
+    params.require(:product).permit(:name, :brand_id, :category_id, :description, :cost_price, :selling_price, :stock, category_ids: [])
+  end
+
+  def image_url
+    params.require(:product).permit(:images)[:images]
   end
 
   def prepare_product
