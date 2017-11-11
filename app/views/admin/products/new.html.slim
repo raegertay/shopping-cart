@@ -6,8 +6,12 @@
     h3 ADD A PRODUCT
     = simple_form_for @product, url: admin_products_path, method: :post do |f|
       = f.input :name
-      = f.association :brand
+      = f.association :brand, include_blank: false
       = link_to 'Add new brand?', new_admin_brand_path, target: '_blank'
+      br
+      br
+      = f.association :categories, as: :check_boxes, include_hidden: false
+      = link_to 'Add new category?', new_admin_category_path, target: '_blank'
       br
       br
       = f.input :description
