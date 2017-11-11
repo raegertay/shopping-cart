@@ -58,12 +58,9 @@ class Admin::ProductsController < ApplicationController
   end
 
   def change_image
-    if @image.update(image_params)
-      flash[:notice] = 'Image successfully changed'
-      redirect_to edit_admin_product_path(params[:id])
-    else
-      render :edit
-    end
+    @image.update(image_params)
+    flash[:notice] = 'Image successfully changed'
+    redirect_to edit_admin_product_path(params[:id])
   end
 
   private
