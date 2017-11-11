@@ -29,8 +29,8 @@ class Product < ApplicationRecord
     self.images.create(url: url, position: position)
   end
 
-  # Reorder images properly based on their :position
-  def reorder_images
+  # Order images properly based on their :position
+  def order_images
     all_images.each.with_index(1) do |image, idx|
       image.update(position: idx)
     end
