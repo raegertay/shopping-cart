@@ -3,7 +3,6 @@ class Admin::CategoriesController < ApplicationController
   before_action :authenticate_admin!
   before_action :prepare_category, only: [:edit, :update, :destroy]
 
-
   def index
     @categories = Category.all
   end
@@ -16,7 +15,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if @category.save
       flash[:notice] = 'Category successfully created!'
-      redirect_to admin_categories_path  #admin/categories#index
+      redirect_to admin_categories_path
     else
       render 'index'
     end

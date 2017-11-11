@@ -7,7 +7,8 @@
     h3 ADD NEW PRODUCT
     = simple_form_for @product, url: admin_product_path(@product), method: :put do |f|
       = f.input :name
-      = f.association :brand
+      = f.association :brand, include_blank: false
+      = f.association :categories, as: :check_boxes, include_hidden: false
       = f.input :description
       = f.input :cost_price
       = f.input :selling_price
