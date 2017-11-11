@@ -57,6 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'filestack-rails', '~> 3.1.0'
+gem 'filterrific'
 gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'simple_form'
