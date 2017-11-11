@@ -5,6 +5,8 @@ br
   = link_to 'Add new product?', new_admin_product_path
 br
 .container.
+  = paginate @products
+  = page_entries_info @products
   .row
     - @products.each.with_index(1) do |product, index|
       .card-group.product-box

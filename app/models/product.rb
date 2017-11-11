@@ -14,7 +14,7 @@ class Product < ApplicationRecord
 
   # Return main image
   def main_image_url
-    images.find_by_position(1).try(:url) || ''
+    images.find_by_position(1).try(:url)
   end
 
   # Return all the images in ascending position order

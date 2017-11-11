@@ -5,7 +5,7 @@ class Admin::ProductsController < ApplicationController
   before_action :prepare_image, only: [:destroy_image, :swap_image_position, :change_image]
 
   def index
-    @products = Product.all.order(created_at: :desc)
+    @products = Product.all.order(created_at: :desc).page(params[:page])
   end
 
   def new
