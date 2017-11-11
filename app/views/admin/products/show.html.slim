@@ -1,7 +1,8 @@
 .container.show-box
   .row
     .col.text-center
-      = image_tag @product.image, width: '500px', class: 'img-thumbnail'
+      - @product.all_images.each do |image|
+        = image_tag image.url, width: '200px', class: 'img-thumbnail'
       br
       h4 = @product.name
       p = "Brand: #{@product.brand.name}"

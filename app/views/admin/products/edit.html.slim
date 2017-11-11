@@ -4,7 +4,7 @@
   br
 
   .form-edit-style
-    h3 ADD NEW PRODUCT
+    h3 EDIT PRODUCT
     = simple_form_for @product, url: admin_product_path(@product), method: :put do |f|
       = f.input :name
       = f.association :brand, include_blank: false
@@ -13,7 +13,23 @@
       = f.input :cost_price
       = f.input :selling_price
       = f.input :stock
-      = f.filestack_field :image, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
+      = f.filestack_field :images, 'Select image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
       br
       br
       = f.button :submit
+
+  h3 EDIT IMAGES
+  small Image in position 1 is will be used as listing image
+  br
+
+  - @product.all_images.each do |image|
+    = image_tag image.url, width: '200px', class: 'img-thumbnail'
+    = link_to 'Delete', image_admin_product_path(@product, image), method: :delete, 'data-confirm': 'Are you sure?'
+
+    = simple_form_for image, url: swap_image_position_admin_product_path(@product, image), method: :put do |f|
+      = f.input :position, collection: 1..@product.images.size, include_blank: false, input_html: { onchange: "this.form.submit()" }
+      = f.button :submit, 'Update Position', hidden: true
+
+    = simple_form_for image, url: change_image_admin_product_path(@product, image), method: :put do |f|
+      = f.filestack_field :url, 'Select image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
+      = f.button :submit, 'Update Image'
