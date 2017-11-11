@@ -12,6 +12,34 @@ class Product < ApplicationRecord
   validates :selling_price, presence: true
   validates :stock, presence: true
 
+  filterrific(
+    default_filter_params: { sorted_by: 'created_at_desc' },
+    available_filters: [
+      :sorted_by
+    ]
+  )
+
+  scope :sorted_by, ->(sort_option) {
+    direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
+
+    case sort_option.to_s
+    when /^created_at_/
+      order("created_at #{direction}")
+    when /^selling_price_/
+      order("selling_price #{direction}")
+    else
+      raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
+    end
+  }
+
+  def self.options_for_sorted_by
+    [
+      ['Newest', 'created_at_desc'],
+      ['Price: Low to High', 'selling_price_asc'],
+      ['Price: High to Low', 'selling_price_desc'],
+    ]
+  end
+
   # Return main image
   def main_image_url
     images.find_by_position(1).try(:url)
