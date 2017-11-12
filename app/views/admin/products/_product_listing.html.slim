@@ -12,6 +12,8 @@
           p
             = "Brand: #{product.brand.name}"
             br
+            = "Category: #{product.categories.map(&:name).join(', ')}"
+            br
             br
             = "Cost Price: $#{product.cost_price}"
             br
