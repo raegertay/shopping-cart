@@ -17,7 +17,8 @@ class Product < ApplicationRecord
     available_filters: [
       :sorted_by,
       :search_query,
-      :with_brand_id
+      :with_brand_id,
+      :with_any_category_ids
     ]
   )
 
@@ -52,6 +53,17 @@ class Product < ApplicationRecord
 
   scope :with_brand_id, ->(brand_ids) {
     where(brand_id: [*brand_ids])
+  }
+
+  scope :with_any_category_ids, ->(category_ids) {
+    product_categories = ProductCategory.arel_table
+    products = Product.arel_table
+    where(
+      ProductCategory \
+      .where(product_categories[:product_id].eq(products[:id])) \
+      .where(product_categories[:category_id].in([*category_ids].map(&:to_i))) \
+      .exists
+    )
   }
 
   def self.options_for_sorted_by

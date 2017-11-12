@@ -14,6 +14,9 @@ br
       | Brand
       = f.select :with_brand_id, @filterrific.select_options[:with_brand_id], { include_blank: '- Any -' }
     div
+      | Category
+      = f.collection_check_boxes :with_any_category_ids, @filterrific.select_options[:with_any_category_ids], :id, :name, { include_hidden: false }
+    div
       | Search
       = f.text_field :search_query, class: 'filterrific-periodically-observed'
     div
