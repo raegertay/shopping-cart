@@ -25,3 +25,7 @@
   line-height: 4;
   font-weight: bolder;
 }
+
+.dropdown-menu {
+  left: -100%;
+}
