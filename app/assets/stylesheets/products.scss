@@ -8,6 +8,7 @@ body {
 }
 .product-box {
   margin-right: 10px;
+  display: inline-flex;
 }
 
 .show-box {
@@ -20,6 +21,10 @@ body {
   border: 25px #343A40 solid;
 }
 
-h1 {
+h1, h2, h3 {
   font-family: 'Dosis', sans-serif;
+}
+
+.btn {
+  border-radius: 1rem;
 }

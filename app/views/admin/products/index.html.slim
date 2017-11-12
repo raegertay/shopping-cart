@@ -4,24 +4,26 @@ br
 
   = link_to 'Add new product?', new_admin_product_path
 br
-.container
+.container-fluid
+  .row
+    .col-2
 
-  = form_for_filterrific @filterrific, url: admin_products_path do |f|
-    div
-      | Sorted by
-      = f.select :sorted_by, @filterrific.select_options[:sorted_by]
-    div
-      | Brand
-      = f.select :with_brand_id, @filterrific.select_options[:with_brand_id], { include_blank: '- Any -' }
-    div
-      | Category
-      = f.collection_check_boxes :with_any_category_ids, @filterrific.select_options[:with_any_category_ids], :id, :name, { include_hidden: false }
-    div
-      | Search
-      = f.text_field :search_query, class: 'filterrific-periodically-observed'
-    div
-      = link_to 'Reset filters', reset_filterrific_url
-    = render_filterrific_spinner
+      = form_for_filterrific @filterrific, url: admin_products_path do |f|
+        div
+          | Sorted by
+          = f.select :sorted_by, @filterrific.select_options[:sorted_by]
+        div
+          | Brand
+          = f.select :with_brand_id, @filterrific.select_options[:with_brand_id], { include_blank: '- Any -' }
+        div
+          | Category
+          = f.collection_check_boxes :with_any_category_ids, @filterrific.select_options[:with_any_category_ids], :id, :name, { include_hidden: false }
+        div
+          | Search
+          = f.text_field :search_query, class: 'filterrific-periodically-observed'
+        div
+          = link_to 'Reset filters', reset_filterrific_url
+        = render_filterrific_spinner
 
-  #product-listing
-    = render 'product_listing'
+    #product-listing.col-10
+      = render 'product_listing'
