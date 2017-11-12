@@ -25,3 +25,6 @@ p = page_entries_info @products
         = link_to 'Show', admin_product_path(product), class: "btn btn-dark btn-sm"
         = link_to 'Edit', edit_admin_product_path(product), class: "btn btn-dark btn-sm"
         = link_to 'Delete', admin_product_path(product), class: "btn btn-dark btn-sm", method: :delete, 'data-confirm': 'Are you sure?'
+
+= paginate @products, remote: true
+br
