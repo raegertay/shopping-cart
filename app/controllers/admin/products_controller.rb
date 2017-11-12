@@ -9,7 +9,8 @@ class Admin::ProductsController < ApplicationController
       Product,
       params[:filterrific],
       select_options: {
-        sorted_by: Product.options_for_sorted_by
+        sorted_by: Product.options_for_sorted_by,
+        with_brand_id: Brand.options_for_select
       }
       ) or return
     @products = @filterrific.find.page(params[:page])

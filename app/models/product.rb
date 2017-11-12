@@ -16,7 +16,8 @@ class Product < ApplicationRecord
     default_filter_params: { sorted_by: 'created_at_desc' },
     available_filters: [
       :sorted_by,
-      :search_query
+      :search_query,
+      :with_brand_id
     ]
   )
 
@@ -47,6 +48,10 @@ class Product < ApplicationRecord
         "name ILIKE ?"
       end.join(' AND '), *terms
     )
+  }
+
+  scope :with_brand_id, ->(brand_ids) {
+    where(brand_id: [*brand_ids])
   }
 
   def self.options_for_sorted_by

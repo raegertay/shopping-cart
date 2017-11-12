@@ -11,6 +11,9 @@ br
       | Sorted by
       = f.select :sorted_by, @filterrific.select_options[:sorted_by]
     div
+      | Brand
+      = f.select :with_brand_id, @filterrific.select_options[:with_brand_id], { include_blank: '- Any -' }
+    div
       | Search
       = f.text_field :search_query, class: 'filterrific-periodically-observed'
     div
