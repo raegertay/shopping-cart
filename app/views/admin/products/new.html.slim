@@ -4,21 +4,31 @@
   br
   .form-edit-style
     h3 ADD A PRODUCT
-    = simple_form_for @product, url: admin_products_path, method: :post do |f|
-      = f.input :name
-      = f.association :brand, include_blank: false
-      = link_to 'Add new brand?', new_admin_brand_path, target: '_blank'
-      br
-      br
-      = f.association :categories, as: :check_boxes, include_hidden: false
-      = link_to 'Add new category?', new_admin_category_path, target: '_blank'
-      br
-      br
-      = f.input :description
-      = f.input :cost_price
-      = f.input :selling_price
-      = f.input :stock
-      = f.filestack_field :images, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
-      br
-      br
-      = f.button :submit, class: 'btn btn-success'
+    = simple_form_for @product, url: admin_products_path, method: :post, defaults: {input_html: {class: 'form-control-sm'}} do |f|
+      .row
+        .col-6
+          = f.input :name
+          = f.association :brand, include_blank: false
+          = link_to 'Add new brand?', new_admin_brand_path, target: '_blank'
+          br
+          br
+          div.form-group
+            = f.label :category_ids, 'Category'
+            br
+            .card
+              .card-body
+                = f.input :category_ids, as: :check_boxes, label: false do
+                  = f.collection_check_boxes :category_ids, Category.options_for_select, :id, :name, { include_hidden: false } do |b|
+                    .form-check-inline
+                      = b.label('data-value': b.value, class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
+          = link_to 'Add new category?', new_admin_category_path, target: '_blank'
+
+        .col-6
+          = f.input :description
+          = f.input :cost_price
+          = f.input :selling_price
+          = f.input :stock
+          = f.filestack_field :images, 'Upload image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
+          br
+          br
+      = f.button :submit, class: 'btn btn-success mt-3'

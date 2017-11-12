@@ -5,31 +5,54 @@
 
   .form-edit-style
     h3 EDIT PRODUCT
-    = simple_form_for @product, url: admin_product_path(@product), method: :put do |f|
-      = f.input :name
-      = f.association :brand, include_blank: false
-      = f.association :categories, as: :check_boxes, include_hidden: false
-      = f.input :description
-      = f.input :cost_price
-      = f.input :selling_price
-      = f.input :stock
-      = f.filestack_field :images, 'Select image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
-      br
-      br
-      = f.button :submit
+    = simple_form_for @product, url: admin_product_path(@product), method: :put, defaults: {input_html: {class: 'form-control-sm'}} do |f|
+      .row
+        .col-6
+          = f.input :name
+          = f.association :brand, include_blank: false
+          = link_to 'Add new brand?', new_admin_brand_path, target: '_blank'
+          br
+          br
+          div.form-group
+            = f.label :category_ids, 'Category'
+            br
+            .card
+              .card-body
+                = f.input :category_ids, as: :check_boxes, label: false do
+                  = f.collection_check_boxes :category_ids, Category.options_for_select, :id, :name, { include_hidden: false } do |b|
+                    .form-check-inline
+                      = b.label('data-value': b.value, class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
+          = link_to 'Add new category?', new_admin_category_path, target: '_blank'
 
-  h3 EDIT IMAGES
-  small Image in position 1 is will be used as listing image
+        .col-6
+          = f.input :description
+          = f.input :cost_price
+          = f.input :selling_price
+          = f.input :stock
+          = f.filestack_field :images, 'Add image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image', class: 'btn btn-sm'
+      = f.button :submit, class: 'btn btn-success mt-3'
+
+  .row.mt-5.mb-3
+    .col-12.text-center
+      h3 EDIT IMAGES
+      small
+        i
+          | (Image in position 1 is will be used in front page)
+
+  .row
+    .col-12
+    - @product.all_images.each do |image|
+      .card.mr-3 style = "width: 250px;"
+        = image_tag image.url, class: 'card-img-top', height: '300px'
+
+        .card-body
+          = simple_form_for image, url: swap_image_position_admin_product_path(@product, image), method: :put do |f|
+            = f.input :position, collection: 1..@product.images.size, include_blank: false, input_html: { onchange: "this.form.submit()", class: 'form-control-sm' }
+            = f.button :submit, 'Update Position', hidden: true
+
+          = simple_form_for image, url: change_image_admin_product_path(@product, image), method: :put do |f|
+            = f.filestack_field :url, 'Change image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image', class: 'btn btn-sm'
+            = f.button :submit, 'Submit', class: 'btn btn-sm btn-success'
+
+          = link_to 'Delete', image_admin_product_path(@product, image), method: :delete, 'data-confirm': 'Are you sure?', class: 'btn btn-danger btn-sm mt-1'
   br
-
-  - @product.all_images.each do |image|
-    = image_tag image.url, width: '200px', class: 'img-thumbnail'
-    = link_to 'Delete', image_admin_product_path(@product, image), method: :delete, 'data-confirm': 'Are you sure?'
-
-    = simple_form_for image, url: swap_image_position_admin_product_path(@product, image), method: :put do |f|
-      = f.input :position, collection: 1..@product.images.size, include_blank: false, input_html: { onchange: "this.form.submit()" }
-      = f.button :submit, 'Update Position', hidden: true
-
-    = simple_form_for image, url: change_image_admin_product_path(@product, image), method: :put do |f|
-      = f.filestack_field :url, 'Select image',  pickerOptions: { accept: 'image/*', uploadInBackground: false }, id: 'product-image'
-      = f.button :submit, 'Update Image'
