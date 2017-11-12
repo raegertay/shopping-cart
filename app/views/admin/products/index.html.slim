@@ -1,13 +1,13 @@
 br
-.text-center
-  h1 Welcome, Admin!
 
-  = link_to 'Add new product?', new_admin_product_path
+h1.text-center Welcome, Admin!
+
 br
 .container-fluid
   .row
     .col-2
-
+      .text-center
+        p = link_to 'Add new product?', new_admin_product_path
       = form_for_filterrific @filterrific, url: admin_products_path do |f|
         div.form-group
           = f.label :sorted_by
