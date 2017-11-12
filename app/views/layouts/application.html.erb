@@ -16,6 +16,8 @@
 </head>
 
 <body>
+<%= render '/layouts/flash' %>
+
 <% if admin_signed_in? %>
 <%= render '/layouts/adminbar' %>
 <% else %>
