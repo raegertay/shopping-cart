@@ -12,6 +12,68 @@ class Product < ApplicationRecord
   validates :selling_price, presence: true
   validates :stock, presence: true
 
+  filterrific(
+    default_filter_params: { sorted_by: 'created_at_desc' },
+    available_filters: [
+      :sorted_by,
+      :search_query,
+      :with_brand_id,
+      :with_any_category_ids
+    ]
+  )
+
+  scope :sorted_by, ->(sort_option) {
+    direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
+
+    case sort_option.to_s
+    when /^created_at_/
+      order("created_at #{direction}")
+    when /^selling_price_/
+      order("selling_price #{direction}")
+    else
+      raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
+    end
+  }
+
+  scope :search_query, ->(query) {
+    return nil if query.blank?
+
+    terms = query.split(/\s+/)
+
+    terms = terms.map do |term|
+      ('%' + term.gsub('*', '%') + '%').gsub(/%+/, '%')
+    end
+
+    where(
+      terms.map do |term|
+        "name ILIKE ?"
+      end.join(' AND '), *terms
+    )
+  }
+
+  scope :with_brand_id, ->(brand_ids) {
+    where(brand_id: [*brand_ids])
+  }
+
+  scope :with_any_category_ids, ->(category_ids) {
+    product_categories = ProductCategory.arel_table
+    products = Product.arel_table
+    where(
+      ProductCategory \
+      .where(product_categories[:product_id].eq(products[:id])) \
+      .where(product_categories[:category_id].in([*category_ids].map(&:to_i))) \
+      .exists
+    )
+  }
+
+  def self.options_for_sorted_by
+    [
+      ['Newest', 'created_at_desc'],
+      ['Price: Low to High', 'selling_price_asc'],
+      ['Price: High to Low', 'selling_price_desc'],
+    ]
+  end
+
   # Return main image
   def main_image_url
     images.find_by_position(1).try(:url)

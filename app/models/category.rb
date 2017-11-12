@@ -5,4 +5,8 @@ class Category < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  def self.options_for_select
+    order("LOWER(name)")
+  end
+
 end

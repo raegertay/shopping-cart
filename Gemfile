@@ -57,6 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'filestack-rails', '~> 3.1.0'
+gem 'filterrific', :git => 'https://github.com/jhund/filterrific.git', :ref => '292ecd953df4ec70f2f9a879105ef5aba5b77e95'
 gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'simple_form'
