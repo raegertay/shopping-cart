@@ -15,7 +15,8 @@ class Product < ApplicationRecord
   filterrific(
     default_filter_params: { sorted_by: 'created_at_desc' },
     available_filters: [
-      :sorted_by
+      :sorted_by,
+      :search_query
     ]
   )
 
@@ -30,6 +31,22 @@ class Product < ApplicationRecord
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
+  }
+
+  scope :search_query, ->(query) {
+    return nil if query.blank?
+
+    terms = query.split(/\s+/)
+
+    terms = terms.map do |term|
+      ('%' + term.gsub('*', '%') + '%').gsub(/%+/, '%')
+    end
+
+    where(
+      terms.map do |term|
+        "name ILIKE ?"
+      end.join(' AND '), *terms
+    )
   }
 
   def self.options_for_sorted_by
