@@ -1,0 +1,6 @@
+h1 Cart
+
+ol
+  - current_customer.cart_items.each do |product, quantity|
+    li
+      = "#{product.name} (Qty: #{quantity})"

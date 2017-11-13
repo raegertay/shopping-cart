@@ -16,8 +16,17 @@ class Customer < ApplicationRecord
     end
   end
 
+  # Return the number of unique products in cart
   def cart_count
     $redis.hlen("cart-#{self.id}")
+  end
+
+  # Return a hash of cart items ( product: quantity )
+  def cart_items
+    items = $redis.hgetall("cart-#{self.id}")
+    items.transform_keys do |product_id|
+      Product.find(product_id)
+    end
   end
 
 end
