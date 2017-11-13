@@ -2,8 +2,10 @@
   .text-center.flash-banner.bg-success.w-100
     p.notice.text-white.m-0
       = notice
+  = javascript_tag "setTimeout(function() {$('.flash-banner p').animate({ height: 'toggle' }, 1000); }, 2000);"
 
 - if alert
   .text-center.flash-banner.bg-danger.w-100
     p.alert.text-white.m-0
       = alert
+  = javascript_tag "setTimeout(function() {$('.flash-banner p').animate({ height: 'toggle' }, 1000); }, 2000);"

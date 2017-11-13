@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   root 'products#index'
 
   resources :products, only: [:index, :show]
+  resource :cart, only: [:show] do
+    put 'add/:product_id', to: 'carts#add', as: :add_to
+    put 'remove/:product_id', to: 'carts#remove', as: :remove_from
+  end
 
   namespace :admin do
     root 'products#index'

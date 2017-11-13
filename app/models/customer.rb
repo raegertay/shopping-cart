@@ -15,4 +15,9 @@ class Customer < ApplicationRecord
       # customer.skip_confirmation!
     end
   end
+
+  def cart_count
+    $redis.hlen("cart-#{self.id}")
+  end
+
 end
