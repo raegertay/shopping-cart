@@ -4,6 +4,9 @@ ol
   - current_customer.cart_items.each do |product, quantity|
     li
       = "#{product.name} (Qty: #{quantity})"
+      p = "Subtotal: $#{product.selling_price * quantity.to_i}"
       p = link_to 'Remove', remove_from_cart_path(product), method: :put
       p = link_to '+', add_to_cart_path(product), method: :put
       p = link_to '-', minus_from_cart_path(product), method: :put
+
+h4 = "Grand total: $#{current_customer.cart_total_price}"

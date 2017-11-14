@@ -29,4 +29,10 @@ class Customer < ApplicationRecord
     end
   end
 
+  def cart_total_price
+    cart_items.reduce(0) do |sum, (product, quantity)|
+      sum + (product.selling_price * quantity.to_i)
+    end
+  end
+
 end
