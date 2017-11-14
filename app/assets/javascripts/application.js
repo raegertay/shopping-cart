@@ -17,11 +17,4 @@
 
 $(document).on("turbolinks:load", function() {
 
-  // Hide flash banner
-  setTimeout(function() {
-    $('.flash-banner p').animate({
-      height: "toggle"
-    }, 1000);
-  }, 3000);
-
 });

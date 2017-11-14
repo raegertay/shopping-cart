@@ -9,6 +9,15 @@ body {
 .product-box {
   margin-right: 10px;
   display: inline-flex;
+
+  .card-body a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .card-body a.btn {
+    color: white;
+  }
 }
 
 .show-box {

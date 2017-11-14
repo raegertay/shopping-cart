@@ -16,13 +16,15 @@
 </head>
 
 <body>
-<%= render '/layouts/flash' %>
+  <div id='flash'>
+    <%= render '/layouts/flash' %>
+  </div>
 
-<% if admin_signed_in? %>
-<%= render '/layouts/adminbar' %>
-<% else %>
-<%= render '/layouts/mainbar' %>
-<% end %>
-<%= yield %>
-</body>
-</html>
+  <% if admin_signed_in? %>
+    <%= render '/layouts/adminbar' %>
+    <% else %>
+    <%= render '/layouts/mainbar' %>
+    <% end %>
+    <%= yield %>
+  </body>
+  </html>
