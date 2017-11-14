@@ -1,12 +1,26 @@
 .container.show-box
   .row
-    .col.text-center
-      = image_tag @product.image, width: '500px', class: 'img-thumbnail'
-      br
-      h4 = @product.name
-      p = @product.brand.name
-      p = @product.description
+    .col-1.text-center
+      .list-group#list-tab role='tablist'
+        - @product.all_images.each.with_index do |image, idx|
+          - a_class = 'list-group-item list-group-item-action p-0 bg-white border-0 mb-2'
+          - a_class += ' active' if idx == 0
+          = content_tag :a, class: a_class, id: "image-#{image.id}-list", 'data-toggle': "list", href: "#image-#{image.id}", role: "tab"
+            = image_tag image.url, class: 'w-100'
 
+    .col-4
+      .tab-content#nav-tabContent
+        - @product.all_images.each.with_index do |image, idx|
+          - div_class = 'tab-pane fade'
+          - div_class += ' show active' if idx == 0
+          = content_tag :div, class: div_class, id: "image-#{image.id}", role: "tabpanel", 'aria-labelledby': "image-#{image.id}-list"
+            = image_tag image.url, class: 'w-100'
+
+    .col-4
+      h4 = @product.name
+      p = "Brand: #{@product.brand.name}"
+      p = "Category: #{@product.categories.map(&:name).join(', ')}"
+      p = "Description: #{@product.description}"
       p = "Cost price: $#{@product.cost_price}"
       p = "Selling price: $#{@product.selling_price}"
       p = "Stock: #{@product.stock}"
