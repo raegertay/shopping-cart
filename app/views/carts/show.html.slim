@@ -4,3 +4,4 @@ ol
   - current_customer.cart_items.each do |product, quantity|
     li
       = "#{product.name} (Qty: #{quantity})"
+      p = link_to 'Remove', remove_from_cart_path(product), method: :put

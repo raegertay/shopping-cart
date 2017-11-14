@@ -12,6 +12,12 @@ class CartsController < ApplicationController
     end
   end
 
+  def remove
+    $redis.hdel(current_customer_cart, params[:product_id])
+    flash[:notice] = 'Item removed'
+    redirect_to cart_path
+  end
+
   private
 
   def current_customer_cart
