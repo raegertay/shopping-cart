@@ -12,6 +12,7 @@ box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
     border: none;
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
+    border-radius: 0;
 }
 
 .form-edit-style {
@@ -35,4 +36,9 @@ box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
 .flexchild {
   flex-grow: 1;
 
+}
+
+.form-control:focus {
+  border-radius: 0;
+  box-shadow: none;
 }
