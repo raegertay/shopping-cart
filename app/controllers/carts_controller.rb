@@ -1,12 +1,29 @@
 class CartsController < ApplicationController
 
-  before_action :authenticate_customer!
+  # before_action :authenticate_customer!, except: [:add]
 
-  def show; end
+  def show
+    if customer_signed_in?
+      @cart_items = current_customer.cart_items
+      @cart_total_price = current_customer.cart_total_price
+    else
+      @cart_items = session[:cart].transform_keys do |product_id|
+        Product.find(product_id)
+      end
+      @cart_total_price = @cart_items.reduce(0) do |sum, (product, quantity)|
+        sum + (product.selling_price * quantity.to_i)
+      end
+    end
+  end
 
   def add
-    # byebug
-    $redis.hincrby(current_customer_cart, params[:product_id], params[:quantity] || 1)
+    if customer_signed_in?
+      $redis.hincrby(current_customer_cart, params[:product_id], params[:quantity] || 1)
+    else
+      session[:cart] ||= Hash.new
+      session[:cart][params[:product_id]] = session[:cart].fetch(params[:product_id], 0) + (params[:quantity].try(:to_i) || 1)
+    end
+
     flash.now[:notice] = "Item successfully added"
     respond_to do |format|
       format.js

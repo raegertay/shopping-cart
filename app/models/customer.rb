@@ -33,7 +33,6 @@ class Customer < ApplicationRecord
     total_price = cart_items.reduce(0) do |sum, (product, quantity)|
       sum + (product.selling_price * quantity.to_i)
     end
-    sprintf('%.2f', total_price)
   end
 
 end
