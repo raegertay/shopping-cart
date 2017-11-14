@@ -45,8 +45,13 @@ class CartsController < ApplicationController
   end
 
   def minus
-    $redis.hincrby(current_customer_cart, params[:product_id], -1)
-    $redis.hdel(current_customer_cart, params[:product_id]) if $redis.hget(current_customer_cart, params[:product_id]).to_i <= 0
+    if customer_signed_in?
+      $redis.hincrby(current_customer_cart, params[:product_id], -1)
+      $redis.hdel(current_customer_cart, params[:product_id]) if $redis.hget(current_customer_cart, params[:product_id]).to_i <= 0
+    else
+      session[:cart][params[:product_id]] -= 1
+      session[:cart].delete(params[:product_id]) if session[:cart][params[:product_id]] <= 0
+    end
     # flash[:notice] = "Quantity reduced"
     redirect_to cart_path
   end
