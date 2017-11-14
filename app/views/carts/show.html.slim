@@ -5,3 +5,5 @@ ol
     li
       = "#{product.name} (Qty: #{quantity})"
       p = link_to 'Remove', remove_from_cart_path(product), method: :put
+      p = link_to '+', add_to_cart_path(product), method: :put
+      p = link_to '-', minus_from_cart_path(product), method: :put
