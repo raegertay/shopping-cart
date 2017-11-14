@@ -35,7 +35,11 @@ class CartsController < ApplicationController
   end
 
   def remove
-    $redis.hdel(current_customer_cart, params[:product_id])
+    if customer_signed_in?
+      $redis.hdel(current_customer_cart, params[:product_id])
+    else
+      session[:cart].delete(params[:product_id])
+    end
     flash[:notice] = 'Item removed'
     redirect_to cart_path
   end
