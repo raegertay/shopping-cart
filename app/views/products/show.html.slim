@@ -24,3 +24,8 @@
       p = "Cost price: $#{@product.cost_price}"
       p = "Selling price: $#{@product.selling_price}"
       p = "Stock: #{@product.stock}"
+
+    .col-3
+      = form_tag add_to_cart_path(@product), method: :put, remote: true do
+        = select_tag 'quantity', options_for_select(1..6)
+        = submit_tag "Add to cart", :name => nil

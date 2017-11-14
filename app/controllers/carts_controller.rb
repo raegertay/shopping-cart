@@ -5,7 +5,8 @@ class CartsController < ApplicationController
   def show; end
 
   def add
-    $redis.hincrby(current_customer_cart, params[:product_id], 1)
+    # byebug
+    $redis.hincrby(current_customer_cart, params[:product_id], params[:quantity] || 1)
     flash.now[:notice] = "Item successfully added"
     respond_to do |format|
       format.js
