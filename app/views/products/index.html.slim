@@ -17,7 +17,7 @@ br
   .container.
     .row
       - @products.each.with_index(1) do |product, index|
-        = link_to product_path(product) do
+        = link_to product_path(product), class: 'product-show-link' do
           .card-group.product-box
             .card style=("width: 350px; height:auto;")
               img.card-img-top style=("width: 350px; height:300px;") src=product.main_image_url
@@ -36,4 +36,5 @@ br
                   br
                   = "Stock available: #{product.stock}"
                   br
-                  = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-sm btn-primary' if customer_signed_in?
+                  object
+                    = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-sm btn-primary'
