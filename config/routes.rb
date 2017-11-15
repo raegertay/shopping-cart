@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   end
 
   resources :transactions, only: [:new, :create]
-
   get 'redirect_to_cart', to: 'transactions#redirect_to_cart'
+
+  resources :orders, only: [:index, :show]
 
 end
