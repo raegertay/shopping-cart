@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
   has_many :images, dependent: :destroy
+  has_many :order_items
   accepts_nested_attributes_for :images
 
   validates :name, presence: true, uniqueness: true
