@@ -12,8 +12,8 @@ class TransactionsController < ApplicationController
       amount: current_customer.cart_total_price,
       payment_method_nonce: params[:payment_method_nonce])
       if @result.success?
-        current_customer.purchase_products!
-        redirect_to root_url, notice: "Congralations! Your transaction is successful!"
+        order = current_customer.purchase_products!
+        redirect_to order_path(order), notice: "Congralations! Your transaction is successful!"
       else
         flash[:alert] = "Something went wrong while processing your transaction. Please try again!"
         gon.client_token = generate_client_token

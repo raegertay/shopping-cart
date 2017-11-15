@@ -1,0 +1,16 @@
+p = link_to 'Back', orders_path
+
+h4 = "Order No: ##{sprintf('%09d', @order.id)}"
+
+p = "Status: #{@order.status.titleize}"
+
+small
+  i
+    = "#{@order.created_at}"
+
+br
+br
+
+ol
+  - @order.order_items.each do |order_item|
+    li = "#{order_item.product.name} (Qty: #{order_item.quantity})"

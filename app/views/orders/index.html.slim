@@ -1,0 +1,7 @@
+h4 Your Orders
+
+ol
+  - @orders.each do |order|
+    li
+      = link_to order_path(order) do
+        = "#{sprintf('%09d', order.id)} (#{order.created_at}) - #{order.status.titleize}"

@@ -24,13 +24,12 @@
           Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <%= link_to 'Logout', destroy_customer_session_path, method: :delete, class: 'dropdown-item' if customer_signed_in? %>
+          <%= link_to 'Orders', orders_path, class: 'dropdown-item' if customer_signed_in? %> 
+          <%= link_to 'Edit Profile', edit_customer_registration_path, class: 'dropdown-item' if customer_signed_in? %>
           <%= link_to 'Login', new_customer_session_path, class: 'dropdown-item' unless customer_signed_in? %>
           <%= link_to 'Register', new_customer_registration_path, class: 'dropdown-item' unless customer_signed_in? %>
-          <% if customer_signed_in? %>
           <div class="dropdown-divider"></div>
-          <%= link_to 'Edit Profile', edit_customer_registration_path, class: 'dropdown-item' %>
-          <% end %>
+          <%= link_to 'Logout', destroy_customer_session_path, method: :delete, class: 'dropdown-item' if customer_signed_in? %>
         </div>
       </li>
     </ul>
