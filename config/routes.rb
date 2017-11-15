@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admins
   devise_for :customers, :controllers => { :omniauth_callbacks => "customers/omniauth_callbacks" }
 
@@ -23,5 +24,9 @@ Rails.application.routes.draw do
     resources :brands, except: [:show]
     resources :categories, except: [:show]
   end
+
+  resources :transactions, only: [:new, :create]
+
+  get 'redirect_to_cart', to: 'transactions#redirect_to_cart'
 
 end

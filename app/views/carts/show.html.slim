@@ -13,3 +13,8 @@ h1 Cart
   h4 = "Grand total: $#{sprintf('%.2f', @cart_total_price)}"
 - else
   p Your cart is empty.
+
+- if customer_signed_in?
+  = link_to "Checkout", new_transaction_path
+- else
+  = link_to "Login to checkout", redirect_to_cart_path

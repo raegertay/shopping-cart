@@ -62,3 +62,5 @@ gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'simple_form'
 gem "slim-rails"
+gem 'braintree', '~> 2.33.1'
+gem 'gon', '~> 6.2.0'
