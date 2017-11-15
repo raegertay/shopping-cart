@@ -16,14 +16,18 @@ class Customer < ApplicationRecord
     end
   end
 
+  def cart_key
+    "cart-#{self.id}"
+  end
+
   # Return the number of unique products in cart
   def cart_count
-    $redis.hlen("cart-#{self.id}")
+    $redis.hlen(self.cart_key)
   end
 
   # Return a hash of cart items ( product: quantity )
   def cart_items
-    items = $redis.hgetall("cart-#{self.id}")
+    items = $redis.hgetall(self.cart_key)
     items.transform_keys do |product_id|
       Product.find(product_id)
     end
@@ -33,7 +37,12 @@ class Customer < ApplicationRecord
     total_price = cart_items.reduce(0) do |sum, (product, quantity)|
       sum + (product.selling_price * quantity.to_i)
     end
-    sprintf('%.2f', total_price)
+  end
+
+  def add_to_cart_from_session(session_cart)
+    session_cart.each do |product_key, quantity|
+      $redis.hincrby(self.cart_key, product_key, quantity)
+    end
   end
 
 end
