@@ -18,7 +18,7 @@ class CartsController < ApplicationController
 
   def add
     if customer_signed_in?
-      $redis.hincrby(current_customer_cart, params[:product_id], params[:quantity] || 1)
+      $redis.hincrby(current_customer.cart_key, params[:product_id], params[:quantity] || 1)
     else
       session[:cart] ||= Hash.new
       session[:cart][params[:product_id]] = session[:cart].fetch(params[:product_id], 0) + (params[:quantity].try(:to_i) || 1)
@@ -36,7 +36,7 @@ class CartsController < ApplicationController
 
   def remove
     if customer_signed_in?
-      $redis.hdel(current_customer_cart, params[:product_id])
+      $redis.hdel(current_customer.cart_key, params[:product_id])
     else
       session[:cart].delete(params[:product_id])
     end
@@ -46,20 +46,14 @@ class CartsController < ApplicationController
 
   def minus
     if customer_signed_in?
-      $redis.hincrby(current_customer_cart, params[:product_id], -1)
-      $redis.hdel(current_customer_cart, params[:product_id]) if $redis.hget(current_customer_cart, params[:product_id]).to_i <= 0
+      $redis.hincrby(current_customer.cart_key, params[:product_id], -1)
+      $redis.hdel(current_customer.cart_key, params[:product_id]) if $redis.hget(current_customer.cart_key, params[:product_id]).to_i <= 0
     else
       session[:cart][params[:product_id]] -= 1
       session[:cart].delete(params[:product_id]) if session[:cart][params[:product_id]] <= 0
     end
     # flash[:notice] = "Quantity reduced"
     redirect_to cart_path
-  end
-
-  private
-
-  def current_customer_cart
-    "cart-#{current_customer.id}"
   end
 
 end
