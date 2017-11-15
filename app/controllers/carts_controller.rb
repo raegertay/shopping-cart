@@ -4,6 +4,10 @@ class CartsController < ApplicationController
 
   def show
     if customer_signed_in?
+      if session[:cart]
+        current_customer.add_to_cart_from_session(session[:cart])
+        session[:cart] = nil
+      end
       @cart_items = current_customer.cart_items
       @cart_total_price = current_customer.cart_total_price
     else

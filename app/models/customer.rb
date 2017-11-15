@@ -39,10 +39,10 @@ class Customer < ApplicationRecord
     end
   end
 
-  # def add_to_cart_from_session(session_cart)
-  #   session_cart.each do |product_key, quantity|
-  #     $redis.hincrby()
-  #   end
-  # end
+  def add_to_cart_from_session(session_cart)
+    session_cart.each do |product_key, quantity|
+      $redis.hincrby(self.cart_key, product_key, quantity)
+    end
+  end
 
 end
