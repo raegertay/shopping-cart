@@ -1,7 +1,5 @@
 class CartsController < ApplicationController
 
-  # before_action :authenticate_customer!, except: [:add]
-
   def show
     if customer_signed_in?
       if session[:cart]

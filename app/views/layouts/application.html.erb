@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>ShoppingCart</title>
+  <%= include_gon %>
+  <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
   <%= csrf_meta_tags %>
   <%= filestack_js_include_tag %>
   <%= filestack_js_init_tag %>
