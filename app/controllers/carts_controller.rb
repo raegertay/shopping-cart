@@ -10,7 +10,7 @@ class CartsController < ApplicationController
       end
       @cart_items = current_customer.cart_items
       @cart_total_price = current_customer.cart_total_price
-    else
+    elsif session[:cart]
       @cart_items = session[:cart].transform_keys do |product_id|
         Product.find(product_id)
       end
