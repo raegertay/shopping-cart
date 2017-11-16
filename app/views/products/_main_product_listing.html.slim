@@ -2,9 +2,9 @@
 p = page_entries_info @products
 - @products.each.with_index(1) do |product, index|
   = link_to product_path(product), class: 'product-show-link' do
-    .card-group.product-box
-      .card style=("width: 350px; height:auto;")
-        img.card-img-top style=("width: 347px; height:300px;") src=product.main_image_url
+    .card.product-box
+      .card style=("width: 300px; height:auto;")
+        img.card-img-top style=("width: 297px; height:300px;") src=product.main_image_url
 
         .card-body style="height: 180px"
           h4.card-title
@@ -20,3 +20,6 @@ p = page_entries_info @products
             object
         .card-footer.
           = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn'
+br
+= paginate @products, remote: true
+br

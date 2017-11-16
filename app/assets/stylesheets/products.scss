@@ -13,8 +13,9 @@ body {
 }
 
 .product-box {
-  margin-right: 10px;
+  margin: 5px 15px;
   display: inline-flex;
+  position: relative;
 
   .card-body a.btn {
     color: white;
@@ -23,6 +24,10 @@ body {
 
 .show-box {
   padding-top: 50px;
+}
+
+.card {
+  border:none;
 }
 
 .brand-bg {
@@ -47,4 +52,18 @@ h1, h2, h3 {
 .add-btn {
   width: 100%;
   border-radius: 0;
+}
+
+.filterrific-box {
+  padding: 10px;
+  margin-right: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+}
+
+.product-backbox {
+  background-color: white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  padding-right: 0;
+  margin-bottom: 30px;
 }
