@@ -19,7 +19,7 @@ p = page_entries_info @products
             br
             object
         .card-footer.
-          = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn'
-br
+          = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn', id: "add-to-cart-#{product.id}"
+
 = paginate @products, remote: true
 br
