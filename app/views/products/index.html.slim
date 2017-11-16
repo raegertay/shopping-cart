@@ -13,28 +13,31 @@
     span.carousel-control-next-icon aria-hidden="true"
     span.sr-only Next
 
-br
-  .container.
-    .row
-      - @products.each.with_index(1) do |product, index|
-        = link_to product_path(product), class: 'product-show-link' do
-          .card-group.product-box
-            .card style=("width: 350px; height:auto;")
-              img.card-img-top style=("width: 350px; height:300px;") src=product.main_image_url
-
+.container-fluid style="margin-top: 20px;"
+  .row.justify-content-center
+    .col-2
+      .filterrific-box
+        = form_for_filterrific @filterrific do |f|
+          div.form-group
+            = f.label :sorted_by
+            = f.select :sorted_by, @filterrific.select_options[:sorted_by], {}, { class: 'form-control form-control-sm' }
+          div.form-group
+            = f.label :with_brand_id, 'Brand'
+            = f.select :with_brand_id, @filterrific.select_options[:with_brand_id], { include_blank: '- Any -' }, { class: 'form-control form-control-sm' }
+          div.form-group
+            = f.label :with_any_category_ids, 'Category'
+            br
+            .card
               .card-body
-                h4.card-title
-                  = product.name
-                p.card-
-                  = "Brand: #{product.brand.name}"
-                  br
-                  br
-                  = "Description: #{product.description}"
-                  br
-                  br
-                  = "Selling Price: $#{product.selling_price}"
-                  br
-                  = "Stock available: #{product.stock}"
-                  br
-                  object
-                    = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-sm btn-primary'
+                = f.collection_check_boxes :with_any_category_ids, @filterrific.select_options[:with_any_category_ids], :id, :name, { include_hidden: false } do |b|
+                  .form-check
+                    = b.label('data-value': b.value, class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
+          div.form-group
+            = f.label :search_query, 'Search'
+            = f.text_field :search_query, class: 'filterrific-periodically-observed form-control form-control-sm', placeholder: 'Search product...'
+          div.form-group
+            = link_to 'Reset filters', reset_filterrific_url
+          = render_filterrific_spinner
+
+    #product-listing.col-9.product-backbox
+      = render 'main_product_listing'

@@ -26,7 +26,7 @@ class CartsController < ApplicationController
       session[:cart][params[:product_id]] = session[:cart].fetch(params[:product_id], 0) + (params[:quantity].try(:to_i) || 1)
     end
 
-    flash.now[:notice] = "Item successfully added"
+    @link_id = "#add-to-cart-#{params[:product_id]}"
     respond_to do |format|
       format.js
       format.html do
