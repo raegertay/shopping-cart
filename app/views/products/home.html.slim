@@ -1,0 +1,73 @@
+/ #carouselExampleIndicators.carousel.slide data-ride="carousel"
+/   ol.carousel-indicators
+/     li.active data-slide-to="0" data-target="#carouselExampleIndicators"
+/     li data-slide-to="1" data-target="#carouselExampleIndicators"
+/     li data-slide-to="2" data-target="#carouselExampleIndicators"
+/   .carousel-inner
+/     .carousel-item.active
+/       img.d-block.w-100 alt=("First slide") src="assets/newarrivals.jpg" /
+/   a.carousel-control-prev data-slide="prev" href="#carouselExampleIndicators" role="button"
+/     span.carousel-control-prev-icon aria-hidden="true"
+/     span.sr-only Previous
+/   a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button"
+/     span.carousel-control-next-icon aria-hidden="true"
+/     span.sr-only Next
+.container-fluid.text-center style="background-color: white; margin-top: 10px;"
+  = link_to 'About Us'
+  = link_to 'Shop All'
+  = link_to 'Contact us'
+
+.parallax
+.test1
+
+.container-fluid.text-center style="background-color:white; padding: 30px 0px"
+  h1 PRODUCTS WE LOVE
+  - @products.take(4).each.with_index(1) do |product, index|
+    = link_to product_path(product), class: 'product-show-link' do
+      .card.product-box
+        .card.object-center style=("width: 300px; height:auto;")
+          img.card-img-top style=("width: 297px; height:300px;") src=product.main_image_url
+
+          .card-body style="height: 140px"
+            h4.card-title
+              = product.brand.name.upcase
+            p.card-
+              = product.name
+              .test
+                = "$#{product.selling_price}"
+              object
+          .card-footer.
+            = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn', id: "add-to-cart-#{product.id}"
+
+.jumbotron.jumbotron-fluid.text-center style="margin-bottom: 0px;"
+  .container
+    h1 WHAT OUR HAPPY CUSTOMERS SAY
+    br
+    p Finding the shampoo that is both healthy and nice for your hair is not easy for any woman… So when I found how many hair care products are offered here I was hooked once and for all!
+    br
+    p Samantha Martins
+
+.container-fluid.text-center style="background-color:white; padding: 30px 0px"
+  h1 FEATURED PRODUCTS
+  br
+    - @products.take(4).each.with_index(1) do |product, index|
+      = link_to product_path(product), class: 'product-show-link' do
+        .card.product-box
+          .card.object-center style=("width: 300px; height:auto;")
+            img.card-img-top style=("width: 297px; height:300px;") src=product.main_image_url
+
+            .card-body style="height: 140px"
+              h4.card-title
+                = product.brand.name.upcase
+              p.card-
+                = product.name
+                .test
+                  = "$#{product.selling_price}"
+                object
+            .card-footer.
+              = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn', id: "add-to-cart-#{product.id}"
+
+.jumbotron.jumbotron-fluid.text-center style="margin-bottom: 0px;"
+  .container
+    h1 Get our special offers!
+    br

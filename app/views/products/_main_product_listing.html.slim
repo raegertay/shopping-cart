@@ -6,17 +6,13 @@ p = page_entries_info @products
       .card style=("width: 300px; height:auto;")
         img.card-img-top style=("width: 297px; height:300px;") src=product.main_image_url
 
-        .card-body style="height: 180px"
+        .card-body style="height: 140px"
           h4.card-title
-            = product.brand.name
+            = product.brand.name.upcase
           p.card-
             = product.name
-            br
-            br
-            = "$#{product.selling_price}"
-            br
-            = "Stock available: #{product.stock}"
-            br
+            .test
+              = "$#{product.selling_price}"
             object
         .card-footer.
           = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn', id: "add-to-cart-#{product.id}"

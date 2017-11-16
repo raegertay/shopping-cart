@@ -1,0 +1,8 @@
+#fixed-navbar {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: -50px;
+  background-color: white;
+  transition: top 0.3s;
+}
