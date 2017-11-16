@@ -1,0 +1,22 @@
+= paginate @products, remote: true
+p = page_entries_info @products
+- @products.each.with_index(1) do |product, index|
+  = link_to product_path(product), class: 'product-show-link' do
+    .card-group.product-box
+      .card style=("width: 350px; height:auto;")
+        img.card-img-top style=("width: auto; height:300px;") src=product.main_image_url
+
+        .card-body style="height: 180px"
+          h4.card-title
+            = product.brand.name
+          p.card-
+            = product.name
+            br
+            br
+            = "$#{product.selling_price}"
+            br
+            = "Stock available: #{product.stock}"
+            br
+            object
+        .card-footer.
+          = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn'
