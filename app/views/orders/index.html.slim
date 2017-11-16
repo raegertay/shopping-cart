@@ -1,7 +1,21 @@
-h4 Your Orders
+.container
+  .row.mt-5
+    .col-12
+      h1.text-center Your Orders
 
-ol
-  - @orders.each do |order|
-    li
-      = link_to order_path(order) do
-        = "#{sprintf('%09d', order.id)} (#{order.created_at}) - #{order.status.titleize}"
+  .row.mt-3.justify-content-center
+    .col-6
+      table class="table table-light" id='orders-table'
+        thead
+          tr
+            th scope='col' ORDER NO.
+            th scope='col' DATE
+            th scope='col' STATUS
+        tbody
+          - @orders.each do |order|
+              tr
+                td = link_to order_path(order) do
+                  = "##{sprintf('%09d', order.id)}"
+                td = order.created_at.strftime('%F')
+                td
+                  strong = order.status.titleize
