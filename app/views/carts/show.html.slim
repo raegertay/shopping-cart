@@ -6,7 +6,7 @@
   .row.justify-content-between.mt-3
     .col-7
       - if @cart_items && !@cart_items.empty?
-        table class="table table-light"
+        table class="table table-light" id='cart-items-table'
           thead
             tr
               th scope="col" colspan='3' PRODUCT
@@ -17,7 +17,7 @@
           tbody
             - @cart_items.each do |product, quantity|
               tr
-                td.p-0
+                td.p-1
                   = link_to product_path(product) do
                     = image_tag (product.main_image_url || ''), width: 50
                 td colspan='2' = link_to product.name, product_path(product)
@@ -33,10 +33,11 @@
       - else
         p Your cart is empty.
 
-    .col-3.d-flex.flex-column.align-items-center
-      h4 Grand total: <b> $#{sprintf('%.2f', @cart_total_price)} </b>
+    - if @cart_items && !@cart_items.empty?
+      .col-3.d-flex.flex-column.align-items-center
+        h4 Grand total: <b> $#{sprintf('%.2f', @cart_total_price)} </b>
 
-      - if customer_signed_in?
-        = link_to "Checkout", new_transaction_path, class: 'btn btn-success btn-block w-75 mt-3'
-      - else
-        = link_to "Login to checkout", redirect_to_cart_path, class: 'btn btn-success btn-block w-75'
+        - if customer_signed_in?
+          = link_to "Checkout", new_transaction_path, class: 'btn btn-success btn-block w-75 mt-3'
+        - else
+          = link_to "Login to checkout", redirect_to_cart_path, class: 'btn btn-success btn-block w-75'
