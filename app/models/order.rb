@@ -7,4 +7,10 @@ class Order < ApplicationRecord
 
   validates :status, presence: true
 
+  def total_price
+    self.order_items.reduce(0) do |sum, order_item|
+      sum += order_item.unit_price * order_item.quantity
+    end
+  end
+
 end
