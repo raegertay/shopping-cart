@@ -1,16 +1,35 @@
-p = link_to 'Back', orders_path
+.container
 
-h4 = "Order No: ##{sprintf('%09d', @order.id)}"
+  .row.justify-content-center.mt-5
+    .col-7
+      p = link_to 'Back', orders_path
+      h4 Order No: <strong>##{sprintf('%09d', @order.id)}</strong>
+      p.m-0 = "#{@order.status.titleize}"
+      small
+        i = @order.created_at.strftime('%F')
 
-p = "Status: #{@order.status.titleize}"
-
-small
-  i
-    = "#{@order.created_at}"
-
-br
-br
-
-ol
-  - @order.order_items.each do |order_item|
-    li = "#{order_item.product.name} (Qty: #{order_item.quantity})"
+  .row.justify-content-center.mt-3
+    .col-7
+      table class="table table-light" id='order-items-table'
+        thead
+          tr
+          th scope="col" colspan='3' PRODUCT
+          th scope="col" PRICE
+          th scope="col" QUANTITY
+          th scope="col" TOTAL
+        tbody
+          - @order.order_items.each do |order_item|
+            tr
+              td.p-1
+                = link_to product_path(order_item.product) do
+                  = image_tag (order_item.product.main_image_url || ''), width: 50
+              td colspan='2' = link_to order_item.product.name, product_path(order_item.product)
+              td = "$#{sprintf('%.2f', order_item.unit_price)}"
+              td.text-center = order_item.quantity
+              td = "$#{sprintf('%.2f', order_item.unit_price * order_item.quantity)}"
+          tr
+            td colspan='4'
+            td colspan='1'
+              strong Grand Total:
+            td
+              strong = "$#{sprintf('%.2f', @order.total_price)}"
