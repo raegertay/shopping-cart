@@ -1,19 +1,40 @@
-<div class="container text-center show-box">
-  <h2>Log in</h2>
-
+<body>
+  <div class="content">
+<div class="container show-box">
+  <div class="row">
+  <div class="col">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs form-style">
-        <%= f.input :email, required: false, autofocus: true, label: false, placeholder: "Enter email" %>
-        <%= f.input :password, required: false, label: false, placeholder: "Enter password" %>
+      <div class="form-inputs form-style flexgrow">
+        <div class="flexchild">
+        <h2>Log in</h2><br>
+        <%= f.input :email, required: false, autofocus: true, label: false, placeholder: "Enter email", input_html: { class: "form-outline" } %>
+        <%= f.input :password, required: false, label: false, placeholder: "Enter password", input_html: { class: "form-outline" } %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Log in" %>
+        <%= f.button :submit, "LOG IN", class: "button btn-block btn-lg" %>
+          <%- resource_class.omniauth_providers.each do |provider| %>
+            <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "button btn-block btn-lg"  %><br />
+        <% end -%>
+    </div>
     </div>
     <% end %>
-  <br>
-  <%= render "customers/shared/links" %>
-  <%= link_to 'Admin?', new_admin_session_path %>
+
+  </div>
+  <div class="flexgrow col form-style">
+    <div class="flexchild">
+    <h2>New Customers</h2><hr><br>
+
+    By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.
+    </div>
+    <div>
+    <%= link_to "Create an account", new_registration_path(resource_name), class:"button btn-block btn-lg" %><br />
+  </div>
   </div>
 </div>
+</div>
+ </div>
+
+<footer class="footer">hello</footer>
+</body>
