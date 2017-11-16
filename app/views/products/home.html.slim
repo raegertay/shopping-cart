@@ -14,7 +14,7 @@
 /     span.sr-only Next
 .container-fluid.text-center style="background-color: white; margin-top: 10px;"
   = link_to 'About Us'
-  = link_to 'Shop All'
+  = link_to 'Shop All', products_path 
   = link_to 'Contact us'
 
 .parallax
@@ -33,11 +33,11 @@
               = product.brand.name.upcase
             p.card-
               = product.name
-              .test
+              .price
                 = "$#{product.selling_price}"
               object
-          .card-footer.
-            = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn', id: "add-to-cart-#{product.id}"
+          .card-footer style="margin-top:10px"
+            = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-dark add-btn', id: "add-to-cart-#{product.id}"
 
 .jumbotron.jumbotron-fluid.text-center style="margin-bottom: 0px;"
   .container
@@ -61,11 +61,11 @@
                 = product.brand.name.upcase
               p.card-
                 = product.name
-                .test
+                .price
                   = "$#{product.selling_price}"
                 object
-            .card-footer.
-              = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn', id: "add-to-cart-#{product.id}"
+            .card-footer style="margin-top:10px"
+              = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-dark add-btn', id: "add-to-cart-#{product.id}"
 
 .jumbotron.jumbotron-fluid.text-center style="margin-bottom: 0px;"
   .container

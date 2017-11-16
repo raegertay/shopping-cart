@@ -2,7 +2,7 @@
 p = page_entries_info @products
 - @products.each.with_index(1) do |product, index|
   = link_to product_path(product), class: 'product-show-link' do
-    .card.product-box
+    .card.product-box.text-center
       .card style=("width: 300px; height:auto;")
         img.card-img-top style=("width: 297px; height:300px;") src=product.main_image_url
 
@@ -11,11 +11,11 @@ p = page_entries_info @products
             = product.brand.name.upcase
           p.card-
             = product.name
-            .test
+            .price
               = "$#{product.selling_price}"
             object
-        .card-footer.
-          = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-success add-btn', id: "add-to-cart-#{product.id}"
+        .card-footer style="margin-top:10px"
+          = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-dark add-btn', id: "add-to-cart-#{product.id}"
 
 = paginate @products, remote: true
 br
