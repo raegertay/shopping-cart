@@ -1,26 +1,8 @@
-/ #carouselExampleIndicators.carousel.slide data-ride="carousel"
-/   ol.carousel-indicators
-/     li.active data-slide-to="0" data-target="#carouselExampleIndicators"
-/     li data-slide-to="1" data-target="#carouselExampleIndicators"
-/     li data-slide-to="2" data-target="#carouselExampleIndicators"
-/   .carousel-inner
-/     .carousel-item.active
-/       img.d-block.w-100 alt=("First slide") src="assets/newarrivals.jpg" /
-/   a.carousel-control-prev data-slide="prev" href="#carouselExampleIndicators" role="button"
-/     span.carousel-control-prev-icon aria-hidden="true"
-/     span.sr-only Previous
-/   a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button"
-/     span.carousel-control-next-icon aria-hidden="true"
-/     span.sr-only Next
-.container-fluid.text-center style="background-color: white; margin-top: 10px;"
-  = link_to 'About Us'
-  = link_to 'Shop All', products_path 
-  = link_to 'Contact us'
+= render 'layouts/menu'
 
 .parallax
-.test1
 
-.container-fluid.text-center style="background-color:white; padding: 30px 0px"
+.container-fluid.text-center style="background-color:white; padding: 100px 0px"
   h1 PRODUCTS WE LOVE
   - @products.take(4).each.with_index(1) do |product, index|
     = link_to product_path(product), class: 'product-show-link' do
@@ -39,18 +21,35 @@
           .card-footer style="margin-top:10px"
             = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-dark add-btn', id: "add-to-cart-#{product.id}"
 
-.jumbotron.jumbotron-fluid.text-center style="margin-bottom: 0px;"
-  .container
-    h1 WHAT OUR HAPPY CUSTOMERS SAY
-    br
-    p Finding the shampoo that is both healthy and nice for your hair is not easy for any woman… So when I found how many hair care products are offered here I was hooked once and for all!
-    br
-    p Samantha Martins
 
-.container-fluid.text-center style="background-color:white; padding: 30px 0px"
+.jumbotron.jumbotron-fluid.second-parallax.text-center style="margin-bottom: 0px;"
+  .container style="padding: 100px 0px"
+    h1 WHAT OUR HAPPY CUSTOMERS SAY
+  #carouselExampleIndicators.carousel.slide data-ride="carousel"
+    .carousel-inner
+      .carousel-item.active
+        .container
+          p "After hearing about peptides on the Dr. Oz Show, I found this page and thought I'd give it a try. I'm very glad I did and I just ordered it here. I am 70 years young and use this twice daily. My skin feels and appears tighter and is glowing. I have received many compliments. I use it under a daily moisturizer with sunscreen in the morning, but at night I use this and then use rose hip seed oil afterwards. I'm extremely happy with this product."
+          p -Judy
+      .carousel-item
+        .container
+          p "Another product that I love. I have tried several of their products, and all of them are very high quality. I also use the hyaluronic acid serum and the Argangold argan oil. These are extremely good, quality products at a very reasonable price -- much better than department store products."
+          p -Samantha Martins
+      .carousel-item
+        .container
+          p "Easy to order online and delivery was fast"
+          p -Martins
+    a.carousel-control-prev data-slide="prev" href="#carouselExampleIndicators" role="button"
+      span.carousel-control-prev-icon aria-hidden="true"
+      span.sr-only Previous
+    a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button"
+      span.carousel-control-next-icon aria-hidden="true"
+      span.sr-only Next
+
+.container-fluid.text-center style="background-color:white; padding: 100px 0px"
   h1 FEATURED PRODUCTS
   br
-    - @products.take(4).each.with_index(1) do |product, index|
+    - @products.offset(4).take(4).each.with_index(1) do |product, index|
       = link_to product_path(product), class: 'product-show-link' do
         .card.product-box
           .card.object-center style=("width: 300px; height:auto;")
@@ -67,7 +66,13 @@
             .card-footer style="margin-top:10px"
               = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-dark add-btn', id: "add-to-cart-#{product.id}"
 
-.jumbotron.jumbotron-fluid.text-center style="margin-bottom: 0px;"
+.jumbotron.jumbotron-fluid.text-center style="margin-bottom: 0px; background-color: #F3D6DB;"
   .container
-    h1 Get our special offers!
+    h1 MAILING LIST
     br
+    form
+    .form-inline.d-flex.justify-content-center
+      form-group
+        input type="email" class="form-group" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
+      |&nbsp;
+      button type="submit" class="btn btn-light" Submit

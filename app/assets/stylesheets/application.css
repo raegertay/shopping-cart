@@ -14,6 +14,10 @@
 *= require_self
 */
 
+body {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
 .flash-banner {
   z-index: 1031;
   position: fixed;

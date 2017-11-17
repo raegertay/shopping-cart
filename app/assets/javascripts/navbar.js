@@ -4,6 +4,6 @@ function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     document.getElementById("fixed-navbar").style.top = "0";
   } else {
-    document.getElementById("fixed-navbar").style.top = "-50px";
+    document.getElementById("fixed-navbar").style.top = "-67px";
   }
 }

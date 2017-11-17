@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :customers, :controllers => { :omniauth_callbacks => "customers/omniauth_callbacks" }
 
-  root 'products#index'
+  root 'products#home'
 
   resources :products, only: [:index, :show]
   get 'home', to: 'products#home'

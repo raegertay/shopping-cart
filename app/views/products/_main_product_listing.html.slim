@@ -12,10 +12,10 @@ p = page_entries_info @products
           p.card-
             = product.name
             .price
-              = "$#{product.selling_price}"
+              = "$#{sprintf('%.2f', product.selling_price)}"
             object
         .card-footer style="margin-top:10px"
-          = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-outline-dark add-btn', id: "add-to-cart-#{product.id}"
+          = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-dark add-btn', id: "add-to-cart-#{product.id}"
 
 = paginate @products, remote: true
 br
