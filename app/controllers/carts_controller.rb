@@ -18,7 +18,7 @@ class CartsController < ApplicationController
     else
       session[:cart].delete(params[:product_id])
     end
-    flash[:notice] = 'Item removed'
+    flash[:notice] = 'Product removed from cart'
     redirect_to cart_path
   end
 
@@ -40,6 +40,7 @@ class CartsController < ApplicationController
       session[:cart].delete(params[:product_id]) if session[:cart][params[:product_id]] <= 0
     end
     get_cart_content
+    @link_id = "#minus-from-cart-#{params[:product_id]}"
     respond_to do |format|
       format.js
     end
