@@ -5,6 +5,7 @@ class Admin::ProductsController < ApplicationController
   before_action :prepare_image, only: [:destroy_image, :swap_image_position, :change_image]
 
   def index
+
     @filterrific = initialize_filterrific(
       Product,
       params[:filterrific],
@@ -15,7 +16,7 @@ class Admin::ProductsController < ApplicationController
       }
       ) or return
     @products = @filterrific.find.page(params[:page])
-
+    # byebug
       respond_to do |format|
         format.js
         format.html
