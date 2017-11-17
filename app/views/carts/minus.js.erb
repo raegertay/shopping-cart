@@ -1,0 +1,16 @@
+$('.cart').html("<%= j render 'carts/cart' %>");
+$('#cart-content').html("<%= j render 'carts/cart_content' %>")
+
+var pos = $("<%= @link_id %>").offset();
+$("<p />", { text: "Removed from cart" }).
+css({
+  position: 'absolute',
+  top: pos.top - 30,
+  left: pos.left - 30,
+  'background-color': 'white'
+}).
+appendTo("body").
+animate({
+  opacity: 0,
+  top: "-=50"
+}, {duration: 1000, complete: function() { $(this).remove() }});
