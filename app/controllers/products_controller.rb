@@ -1,7 +1,10 @@
 class ProductsController < ApplicationController
 
   # before_action :authenticate_customer!
-
+  def home
+  @products = Product.all
+  end
+  
   def index
     if customer_signed_in?
       if session[:cart]

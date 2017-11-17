@@ -4,9 +4,11 @@ $("<p />", { text: "Added to cart" }).
 css({
   position: 'absolute',
   top: pos.top - 30,
-  left: pos.left + 100,
-  'background-color': 'yellow'
+  left: pos.left ,
+  width: 300,
+  'background-color': 'white'
 }).
+addClass('text-center').
 appendTo("body").
 animate({
   opacity: 0,

@@ -1,0 +1,32 @@
+.parallax {
+
+    background-image: url("banner.jpg");
+    min-height: 800px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.second-parallax {
+    background-image: url("background2.jpg");
+    min-height: 600px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hide {
+height:300px;
+background-color:white;
+font-size:36;
+}
+
+.test2 {
+  height: 700px;
+}
+
+.object-center {
+    display:block;
+}

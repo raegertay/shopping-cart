@@ -1,0 +1,13 @@
+#fixed-navbar {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: -68px;
+  background-color: white;
+  transition: top 0.3s;
+  box-shadow: 0 4px 5px -5px gray;
+}
+
+a {
+    color: black;
+}

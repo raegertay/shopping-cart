@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :customers, :controllers => { :omniauth_callbacks => "customers/omniauth_callbacks" }
 
-  root 'products#index'
+  root 'products#home'
 
   resources :products, only: [:index, :show]
+  get 'home', to: 'products#home'
+
   resource :cart, only: [:show] do
     put 'add/:product_id', to: 'carts#add', as: :add_to
     put 'remove/:product_id', to: 'carts#remove', as: :remove_from

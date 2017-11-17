@@ -7,9 +7,19 @@ body {
 
 }
 
-.product-show-link:-webkit-any-link {
+a:hover {
   text-decoration: none;
   color: black;
+}
+
+.product-show-link {
+  text-decoration: none;
+  color: black;
+
+  :hover {
+    color: black;
+    text-decoration: none;
+  }
 }
 
 .product-box {
@@ -66,4 +76,9 @@ h1, h2, h3 {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
   padding-right: 0;
   margin-bottom: 30px;
+}
+
+.price {
+  font-size: 25px;
+  font-weight: bold;
 }
