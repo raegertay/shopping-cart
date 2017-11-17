@@ -9,10 +9,6 @@ class CartsController < ApplicationController
     @link_id = "#add-to-cart-#{params[:product_id]}"
     respond_to do |format|
       format.js
-      format.html do
-        flash[:notice] = "Item successfully added"
-        redirect_to cart_path
-      end
     end
   end
 
@@ -31,10 +27,6 @@ class CartsController < ApplicationController
     get_cart_content
     respond_to do |format|
       format.js
-      format.html do
-        flash[:notice] = "Item successfully added"
-        redirect_to cart_path
-      end
     end
   end
 
@@ -46,8 +38,10 @@ class CartsController < ApplicationController
       session[:cart][params[:product_id]] -= 1
       session[:cart].delete(params[:product_id]) if session[:cart][params[:product_id]] <= 0
     end
-    # flash[:notice] = "Quantity reduced"
-    redirect_to cart_path
+    get_cart_content
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
