@@ -25,6 +25,7 @@ class CartsController < ApplicationController
   def plus
     add_to_cart
     get_cart_content
+    @link_id = "#plus-to-cart-#{params[:product_id]}"
     respond_to do |format|
       format.js
     end

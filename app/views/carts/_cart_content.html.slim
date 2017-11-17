@@ -18,7 +18,7 @@
               td colspan='2' = link_to product.name, product_path(product)
               td = "$#{sprintf('%.2f', product.selling_price)}"
               td = quantity
-              td = link_to '+', plus_to_cart_path(product), method: :put, remote: true
+              td = link_to '+', plus_to_cart_path(product), method: :put, remote: true, id: "plus-to-cart-#{product.id}"
               td = link_to "−", minus_from_cart_path(product), method: :put, remote: true
               td = "$#{sprintf('%.2f', product.selling_price * quantity.to_i)}"
               td
