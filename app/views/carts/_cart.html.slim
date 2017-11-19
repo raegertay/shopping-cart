@@ -1,1 +1,4 @@
-= link_to "Cart(#{current_customer.try(:cart_count) || session[:cart].try(:keys).try(:size) || 0})", cart_path, class: 'nav-link float-right'
+= link_to cart_path, class: 'nav-link float-right' do
+ = image_tag "/assets/cart.svg", height: '30', width: '25'
+ | &nbsp;
+ = "Cart(#{current_customer.try(:cart_count) || session[:cart].try(:keys).try(:size) || 0})"

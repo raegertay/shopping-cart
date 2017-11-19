@@ -23,7 +23,7 @@ a:hover {
 }
 
 .product-box {
-  margin: 5px 15px;
+  margin: 20px 15px;
   display: inline-flex;
   position: relative;
 
@@ -75,10 +75,14 @@ h1, h2, h3 {
   background-color: white;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
   padding-right: 0;
-  margin-bottom: 30px;
+
 }
 
 .price {
   font-size: 25px;
   font-weight: bold;
+}
+
+.position {
+  margin: 100px auto;
 }

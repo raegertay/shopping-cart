@@ -16,6 +16,6 @@ p = page_entries_info @products
             object
         .card-footer style="margin-top:10px"
           = link_to 'Add to cart', add_to_cart_path(product), method: :put, remote: true, class: 'btn btn-block btn-dark add-btn', id: "add-to-cart-#{product.id}"
-
+  
 = paginate @products, remote: true
 br

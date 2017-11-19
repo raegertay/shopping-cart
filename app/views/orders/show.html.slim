@@ -1,16 +1,17 @@
-.container.mt-5
-
-  .row.justify-content-center.mt-5
-    .col-7
-      p = link_to 'Back', orders_path
-      h4 Order No: <strong>##{sprintf('%09d', @order.id)}</strong>
-      p.m-0 = "#{@order.status.titleize}"
-      small
-        i = @order.created_at.strftime('%F')
+.container.product-backbox style="margin: 150px auto;"
 
   .row.justify-content-center.mt-3
-    .col-7
-      table class="table table-light" id='order-items-table'
+    .col-8
+      p = link_to 'Back', orders_path
+      h4 Order No: <strong>##{sprintf('%09d', @order.id)}</strong>
+      p.m-0 = "Status: #{@order.status.titleize}"
+      br
+      small
+        i = "Order created on: #{@order.created_at.strftime('%F')}"
+
+  .row.justify-content-center.mt-3
+    .col-8
+      table class="table table-light"
         thead
           tr
           th scope="col" colspan='3' PRODUCT

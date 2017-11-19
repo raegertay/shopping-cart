@@ -13,11 +13,13 @@
 
     <ul class="navbar-nav w-100 justify-content-between">
       <li class="nav-item active">
-        <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<%= root_path %>">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= products_path %>">Shop all</a>
       </li>
 
       <li class="nav-item cart ml-auto">
-        <%= image_tag "/assets/cart.svg", height: '40', width: '25' %>
         <%= render 'carts/cart' %>
       </li>
 

@@ -42,7 +42,7 @@ class Product < ApplicationRecord
     terms = query.split(/\s+/)
 
     terms = terms.map do |term|
-      ('%' + term.gsub('*', '%') + '%').gsub(/%+/, '%')
+      ('%' + term.gsub('*', '-') + '%').gsub(/%+/, '%')
     end
 
     where(

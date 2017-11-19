@@ -1,5 +1,5 @@
-.container.show-box
-  .row
+.container.product-backbox style = "margin:200px auto;"
+  .row style = "padding: 20px;"
     .col-1.text-center
       .list-group#list-tab role='tablist'
         - @product.all_images.each.with_index do |image, idx|
@@ -20,12 +20,13 @@
       h4 = @product.name
       p = "Brand: #{@product.brand.name}"
       p = "Category: #{@product.categories.map(&:name).join(', ')}"
-      p = "Description: #{@product.description}"
-      p = "Cost price: $#{@product.cost_price}"
-      p = "Selling price: $#{@product.selling_price}"
-      p = "Stock: #{@product.stock}"
+      p = "#{@product.description}"
+      .price
+        p = "$#{@product.selling_price}"
+      .float-right
+        p = "Stock: #{@product.stock}"
 
-    .col-3
+    .col-3.text-center
       = form_tag add_to_cart_path(@product), method: :put, remote: true do
         = select_tag 'quantity', options_for_select(1..10)
         = submit_tag "Add to cart", :name => nil

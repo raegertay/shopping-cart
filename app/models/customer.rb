@@ -50,7 +50,7 @@ class Customer < ApplicationRecord
   def purchase_products!
     order = self.orders.create(status: 'in_progress')
     self.cart_items.each do |product, quantity|
-      order.order_items.create(product_id: product.id, quantity: quantity, unit_price: product.cost_price)
+      order.order_items.create(product_id: product.id, quantity: quantity, unit_price: product.selling_price)
     end
     $redis.del(self.cart_key)
     order
