@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   def home
   @products = Product.all
   end
-  
+
   def index
     if customer_signed_in?
       if session[:cart]
