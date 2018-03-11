@@ -1,3 +1,5 @@
-# Heroku
+# PIXIE By Gloger
+A shopping app that sells cosmetics.
 
-https://shopping-cart-gloger.herokuapp.com/
+## LIVE VERSION
+Click [here](https://pixie-by-gloger.herokuapp.com/) to go to app.
